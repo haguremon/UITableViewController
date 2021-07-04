@@ -33,10 +33,20 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+        cell.textLabel?.text = "cell\(indexPath.row)"
+        //カスタムセルで自分で設置したラベルにタグをつけて7/3
+        //カスタムセルにボタンやテキストファイル、を追加したviewWithTagで分ける必要がある７・４
+        let lable = cell.viewWithTag(1) as! UILabel //UILabelにダウンキャストしてる(UIView？から)
+        lable.text = "\(indexPath.row + 1)" //０から始まるから+ 1してみた笑
+        let textlabel = cell.viewWithTag(2) as! UITextField
+        textlabel.text = "\(indexPath.row)"
+        let button = cell.viewWithTag(3) as! UIButton
+        button.setTitle("\(indexPath.row)", for: .normal)
+        //self.view.addSubview(button)
         return cell
     }
-
+    @objc func chagedtext(_ sender: UIButton) {
+    }
 
     /*
     // Override to support conditional editing of the table view.
